@@ -2,8 +2,8 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
-using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
+using Oracle.EntityFrameworkCore.Metadata;
 
 #nullable disable
 
@@ -19,26 +19,26 @@ namespace SistemaEventos.API.Migrations
                 .HasAnnotation("ProductVersion", "8.0.15")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
-            SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
+            OracleModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
             modelBuilder.Entity("SistemaEventos.Modelos.Certificado", b =>
                 {
                     b.Property<int>("Codigo")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("NUMBER(10)");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Codigo"));
+                    OraclePropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Codigo"));
 
                     b.Property<string>("Nombre")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("NVARCHAR2(2000)");
 
                     b.Property<int>("ParticipanteCodigo")
-                        .HasColumnType("int");
+                        .HasColumnType("NUMBER(10)");
 
                     b.Property<string>("TipoCertificado")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("NVARCHAR2(2000)");
 
                     b.HasKey("Codigo");
 
@@ -51,30 +51,30 @@ namespace SistemaEventos.API.Migrations
                 {
                     b.Property<int>("Codigo")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("NUMBER(10)");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Codigo"));
+                    OraclePropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Codigo"));
 
                     b.Property<DateTime>("Fecha")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("TIMESTAMP(7)");
 
                     b.Property<string>("Lugar")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("NVARCHAR2(2000)");
 
                     b.Property<string>("Nombre")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("NVARCHAR2(2000)");
 
                     b.Property<int>("ParticipanteCodigo")
-                        .HasColumnType("int");
+                        .HasColumnType("NUMBER(10)");
 
                     b.Property<int>("PonenteCodigo")
-                        .HasColumnType("int");
+                        .HasColumnType("NUMBER(10)");
 
                     b.Property<string>("Tipo")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("NVARCHAR2(2000)");
 
                     b.HasKey("Codigo");
 
@@ -89,22 +89,23 @@ namespace SistemaEventos.API.Migrations
                 {
                     b.Property<int>("Codigo")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("NUMBER(10)");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Codigo"));
+                    OraclePropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Codigo"));
 
                     b.Property<string>("Estado")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("NVARCHAR2(2000)");
 
                     b.Property<DateTime>("FechaInscripcion")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("TIMESTAMP(7)");
 
-                    b.Property<bool>("Pago")
-                        .HasColumnType("bit");
+                    b.Property<string>("Pago")
+                        .IsRequired()
+                        .HasColumnType("NVARCHAR2(2000)");
 
                     b.Property<int>("ParticipanteCodigo")
-                        .HasColumnType("int");
+                        .HasColumnType("NUMBER(10)");
 
                     b.HasKey("Codigo");
 
@@ -117,28 +118,29 @@ namespace SistemaEventos.API.Migrations
                 {
                     b.Property<int>("Codigo")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("NUMBER(10)");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Codigo"));
+                    OraclePropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Codigo"));
 
-                    b.Property<bool>("AsistenciaCompleta")
-                        .HasColumnType("bit");
+                    b.Property<string>("AsistenciaCompleta")
+                        .IsRequired()
+                        .HasColumnType("NVARCHAR2(2000)");
 
                     b.Property<string>("Carrera")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("NVARCHAR2(2000)");
 
                     b.Property<string>("Facultad")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("NVARCHAR2(2000)");
 
                     b.Property<string>("Nivel")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("NVARCHAR2(2000)");
 
                     b.Property<string>("Nombre")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("NVARCHAR2(2000)");
 
                     b.HasKey("Codigo");
 
@@ -149,21 +151,21 @@ namespace SistemaEventos.API.Migrations
                 {
                     b.Property<int>("Codigo")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("NUMBER(10)");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Codigo"));
+                    OraclePropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Codigo"));
 
                     b.Property<string>("Apellido")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("NVARCHAR2(2000)");
 
                     b.Property<string>("Nombre")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("NVARCHAR2(2000)");
 
                     b.Property<string>("Pais")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("NVARCHAR2(2000)");
 
                     b.HasKey("Codigo");
 
@@ -174,23 +176,23 @@ namespace SistemaEventos.API.Migrations
                 {
                     b.Property<int>("Codigo")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("NUMBER(10)");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Codigo"));
+                    OraclePropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Codigo"));
 
                     b.Property<int>("InscripcionCodigo")
-                        .HasColumnType("int");
+                        .HasColumnType("NUMBER(10)");
 
                     b.Property<double>("Monto")
-                        .HasColumnType("float");
+                        .HasColumnType("BINARY_DOUBLE");
 
                     b.Property<string>("Nombre")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("NVARCHAR2(2000)");
 
                     b.Property<string>("TipoPago")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("NVARCHAR2(2000)");
 
                     b.HasKey("Codigo");
 
@@ -203,26 +205,26 @@ namespace SistemaEventos.API.Migrations
                 {
                     b.Property<int>("Codigo")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("NUMBER(10)");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Codigo"));
+                    OraclePropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Codigo"));
 
                     b.Property<int>("EventoCodigo")
-                        .HasColumnType("int");
+                        .HasColumnType("NUMBER(10)");
 
                     b.Property<int>("HorarioFin")
-                        .HasColumnType("int");
+                        .HasColumnType("NUMBER(10)");
 
                     b.Property<int>("HorarioInicio")
-                        .HasColumnType("int");
+                        .HasColumnType("NUMBER(10)");
 
                     b.Property<string>("Nombre")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("NVARCHAR2(2000)");
 
                     b.Property<string>("Sala")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("NVARCHAR2(2000)");
 
                     b.HasKey("Codigo");
 

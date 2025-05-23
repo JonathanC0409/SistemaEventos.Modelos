@@ -15,13 +15,13 @@ namespace SistemaEventos.API.Migrations
                 name: "Participantes",
                 columns: table => new
                 {
-                    Codigo = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Nombre = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Facultad = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Carrera = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Nivel = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    AsistenciaCompleta = table.Column<bool>(type: "bit", nullable: false)
+                    Codigo = table.Column<int>(type: "NUMBER(10)", nullable: false)
+                        .Annotation("Oracle:Identity", "START WITH 1 INCREMENT BY 1"),
+                    Nombre = table.Column<string>(type: "NVARCHAR2(2000)", nullable: false),
+                    Facultad = table.Column<string>(type: "NVARCHAR2(2000)", nullable: false),
+                    Carrera = table.Column<string>(type: "NVARCHAR2(2000)", nullable: false),
+                    Nivel = table.Column<string>(type: "NVARCHAR2(2000)", nullable: false),
+                    AsistenciaCompleta = table.Column<string>(type: "NVARCHAR2(2000)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -32,11 +32,11 @@ namespace SistemaEventos.API.Migrations
                 name: "Ponentes",
                 columns: table => new
                 {
-                    Codigo = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Nombre = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Apellido = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Pais = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    Codigo = table.Column<int>(type: "NUMBER(10)", nullable: false)
+                        .Annotation("Oracle:Identity", "START WITH 1 INCREMENT BY 1"),
+                    Nombre = table.Column<string>(type: "NVARCHAR2(2000)", nullable: false),
+                    Apellido = table.Column<string>(type: "NVARCHAR2(2000)", nullable: false),
+                    Pais = table.Column<string>(type: "NVARCHAR2(2000)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -47,11 +47,11 @@ namespace SistemaEventos.API.Migrations
                 name: "Certificados",
                 columns: table => new
                 {
-                    Codigo = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Nombre = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    TipoCertificado = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    ParticipanteCodigo = table.Column<int>(type: "int", nullable: false)
+                    Codigo = table.Column<int>(type: "NUMBER(10)", nullable: false)
+                        .Annotation("Oracle:Identity", "START WITH 1 INCREMENT BY 1"),
+                    Nombre = table.Column<string>(type: "NVARCHAR2(2000)", nullable: false),
+                    TipoCertificado = table.Column<string>(type: "NVARCHAR2(2000)", nullable: false),
+                    ParticipanteCodigo = table.Column<int>(type: "NUMBER(10)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -68,12 +68,12 @@ namespace SistemaEventos.API.Migrations
                 name: "Inscripciones",
                 columns: table => new
                 {
-                    Codigo = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Pago = table.Column<bool>(type: "bit", nullable: false),
-                    Estado = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    FechaInscripcion = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    ParticipanteCodigo = table.Column<int>(type: "int", nullable: false)
+                    Codigo = table.Column<int>(type: "NUMBER(10)", nullable: false)
+                        .Annotation("Oracle:Identity", "START WITH 1 INCREMENT BY 1"),
+                    Pago = table.Column<string>(type: "NVARCHAR2(2000)", nullable: false),
+                    Estado = table.Column<string>(type: "NVARCHAR2(2000)", nullable: false),
+                    FechaInscripcion = table.Column<DateTime>(type: "TIMESTAMP(7)", nullable: false),
+                    ParticipanteCodigo = table.Column<int>(type: "NUMBER(10)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -90,14 +90,14 @@ namespace SistemaEventos.API.Migrations
                 name: "Eventos",
                 columns: table => new
                 {
-                    Codigo = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Nombre = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Fecha = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Lugar = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Tipo = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    PonenteCodigo = table.Column<int>(type: "int", nullable: false),
-                    ParticipanteCodigo = table.Column<int>(type: "int", nullable: false)
+                    Codigo = table.Column<int>(type: "NUMBER(10)", nullable: false)
+                        .Annotation("Oracle:Identity", "START WITH 1 INCREMENT BY 1"),
+                    Nombre = table.Column<string>(type: "NVARCHAR2(2000)", nullable: false),
+                    Fecha = table.Column<DateTime>(type: "TIMESTAMP(7)", nullable: false),
+                    Lugar = table.Column<string>(type: "NVARCHAR2(2000)", nullable: false),
+                    Tipo = table.Column<string>(type: "NVARCHAR2(2000)", nullable: false),
+                    PonenteCodigo = table.Column<int>(type: "NUMBER(10)", nullable: false),
+                    ParticipanteCodigo = table.Column<int>(type: "NUMBER(10)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -120,12 +120,12 @@ namespace SistemaEventos.API.Migrations
                 name: "RegistroPagos",
                 columns: table => new
                 {
-                    Codigo = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Nombre = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    TipoPago = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Monto = table.Column<double>(type: "float", nullable: false),
-                    InscripcionCodigo = table.Column<int>(type: "int", nullable: false)
+                    Codigo = table.Column<int>(type: "NUMBER(10)", nullable: false)
+                        .Annotation("Oracle:Identity", "START WITH 1 INCREMENT BY 1"),
+                    Nombre = table.Column<string>(type: "NVARCHAR2(2000)", nullable: false),
+                    TipoPago = table.Column<string>(type: "NVARCHAR2(2000)", nullable: false),
+                    Monto = table.Column<double>(type: "BINARY_DOUBLE", nullable: false),
+                    InscripcionCodigo = table.Column<int>(type: "NUMBER(10)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -142,13 +142,13 @@ namespace SistemaEventos.API.Migrations
                 name: "Sesiones",
                 columns: table => new
                 {
-                    Codigo = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Nombre = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    HorarioInicio = table.Column<int>(type: "int", nullable: false),
-                    HorarioFin = table.Column<int>(type: "int", nullable: false),
-                    Sala = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    EventoCodigo = table.Column<int>(type: "int", nullable: false)
+                    Codigo = table.Column<int>(type: "NUMBER(10)", nullable: false)
+                        .Annotation("Oracle:Identity", "START WITH 1 INCREMENT BY 1"),
+                    Nombre = table.Column<string>(type: "NVARCHAR2(2000)", nullable: false),
+                    HorarioInicio = table.Column<int>(type: "NUMBER(10)", nullable: false),
+                    HorarioFin = table.Column<int>(type: "NUMBER(10)", nullable: false),
+                    Sala = table.Column<string>(type: "NVARCHAR2(2000)", nullable: false),
+                    EventoCodigo = table.Column<int>(type: "NUMBER(10)", nullable: false)
                 },
                 constraints: table =>
                 {

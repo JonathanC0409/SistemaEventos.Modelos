@@ -14,7 +14,7 @@ namespace SistemaEventos.Modelos
         public string Facultad { get; set; }
         public string Carrera { get; set; }
         public string Nivel { get; set; }
-        public bool AsistenciaCompleta { get; set; }
+        public string AsistenciaCompleta { get; set; }
         //Claves foraneas
 
         //Navegadores

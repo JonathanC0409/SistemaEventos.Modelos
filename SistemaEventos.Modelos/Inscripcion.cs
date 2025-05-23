@@ -10,7 +10,7 @@ namespace SistemaEventos.Modelos
     public class Inscripcion
     {
         [Key] public int Codigo { get; set; }
-        public bool Pago { get; set; }
+        public string Pago { get; set; }
         public string Estado { get; set; }
         public DateTime FechaInscripcion { get; set; }
         //Claves foraneas

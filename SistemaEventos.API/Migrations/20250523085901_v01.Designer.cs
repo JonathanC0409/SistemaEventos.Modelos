@@ -11,7 +11,7 @@ using Oracle.EntityFrameworkCore.Metadata;
 namespace SistemaEventos.API.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20250523050720_v01")]
+    [Migration("20250523085901_v01")]
     partial class v01
     {
         /// <inheritdoc />

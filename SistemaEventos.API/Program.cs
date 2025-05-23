@@ -9,7 +9,7 @@ namespace SistemaEventos.API
         {
             var builder = WebApplication.CreateBuilder(args);
             builder.Services.AddDbContext<AppDbContext>(options =>
-                options.UseSqlServer(builder.Configuration.GetConnectionString("AppDbContext") ?? throw new InvalidOperationException("Connection string 'AppDbContext' not found.")));
+                options.UseOracle(builder.Configuration.GetConnectionString("AppDbContext") ?? throw new InvalidOperationException("Connection string 'AppDbContext' not found.")));
 
             //var builder = WebApplication.CreateBuilder(args);
             //builder.Services.AddDbContext<AppDbContext>(options =>

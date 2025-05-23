@@ -107,7 +107,7 @@ namespace SistemaEventos.Test
                 Facultad = ObtenerInput("Ingrese Facultad:"),
                 Carrera = ObtenerInput("Ingrese Carrera:"),
                 Nivel = ObtenerInput("Ingrese nivel"),
-                AsistenciaCompleta = bool.Parse(ObtenerInput("Asistencia completa solo true o false:"))
+                AsistenciaCompleta = (ObtenerInput("Asistencia completa solo true o false:"))
             });
 
             if(participantes != null)
@@ -126,7 +126,7 @@ namespace SistemaEventos.Test
             CRUD<Inscripcion>.EndPoint = "https://localhost:7090/api/Inscripciones";
             var incripcion = CRUD<Inscripcion>.Create(new Inscripcion
             {
-                Pago = bool.Parse(ObtenerInput("Esta Pagado true o false")),
+                Pago = (ObtenerInput("Esta Pagado true o false")),
                 Estado = ObtenerInput("Ingrese estado Confirmado o Denegado"),
                 FechaInscripcion = DateTime.Parse(ObtenerInput("Ingrese fecha dd/mm/yyyy")),
                 ParticipanteCodigo = int.Parse(ObtenerInput("Ingrese codigo del participante"))
@@ -174,11 +174,11 @@ namespace SistemaEventos.Test
             foreach (var p in participantes)
             {
                 Console.WriteLine($"ID: {p.Codigo}, Nombre: {p.Nombre} Asistencia: {p.AsistenciaCompleta}");
-                if (p.AsistenciaCompleta)
+                if (p.AsistenciaCompleta.Equals("true"))
                 {
                     foreach (var i in p.Inscripciones)
                     {
-                        if (i.Pago)
+                        if (i.Pago.Equals("true"))
                         {
                             Console.WriteLine($"ID: {i.Codigo}, Estado: {i.Estado}, Fecha: {i.FechaInscripcion.ToShortDateString()}");
                             CRUD<Certificado>.Create(new Certificado
@@ -204,8 +204,63 @@ namespace SistemaEventos.Test
 
         public static void ConsultarInformacionHistorica()
         {
+            Console.Clear();
+            Console.WriteLine("Información Histórica y Estadística\n");
 
+            // Establecer endpoints
+            CRUD<Evento>.EndPoint = "https://localhost:7090/api/Eventos";
+            CRUD<Participante>.EndPoint = "https://localhost:7090/api/Participantes";
+            CRUD<Inscripcion>.EndPoint = "https://localhost:7090/api/Inscripciones";
+            CRUD<RegistroPago>.EndPoint = "https://localhost:7090/api/RegistroPagos";
+            CRUD<Certificado>.EndPoint = "https://localhost:7090/api/Certificados";
+
+            // Obtener datos
+            var eventos = CRUD<Evento>.GetAll();
+            var participantes = CRUD<Participante>.GetAll();
+            var inscripciones = CRUD<Inscripcion>.GetAll();
+            var pagos = CRUD<RegistroPago>.GetAll();
+            var certificados = CRUD<Certificado>.GetAll();
+
+            // Estadísticas generales
+            Console.WriteLine($"?? Total de Eventos: {eventos?.Count() ?? 0}");
+            Console.WriteLine($"?? Total de Participantes: {participantes?.Count() ?? 0}");
+            Console.WriteLine($"?? Total de Certificados Emitidos: {certificados?.Count() ?? 0}");
+            Console.WriteLine($"?? Total de Pagos Registrados: {pagos?.Count() ?? 0}");
+
+            double montoTotal = pagos?.Sum(p => p.Monto) ?? 0;
+            Console.WriteLine($"?? Suma Total de Monto Recaudado: ${montoTotal:0.00}\n");
+
+            // Participantes con certificados
+            Console.WriteLine("--- Participantes con certificados emitidos ---");
+            if (certificados != null && participantes != null)
+            {
+                foreach (var cert in certificados)
+                {
+                    var participante = participantes.FirstOrDefault(p => p.Codigo == cert.ParticipanteCodigo);
+                    if (participante != null)
+                    {
+                        Console.WriteLine($"Participante: {participante.Nombre}, Certificado: {cert.Nombre}, Tipo: {cert.TipoCertificado}");
+                    }
+                }
+            }
+
+            Console.WriteLine();
+
+            // Pagos registrados por inscripción
+            Console.WriteLine("--- Pagos registrados por inscripción ---");
+            if (pagos != null)
+            {
+                foreach (var pago in pagos)
+                {
+                    Console.WriteLine($"Pago: {pago.Codigo}, Tipo: {pago.TipoPago}, Monto: {pago.Monto}, Inscripción Código: {pago.InscripcionCodigo}");
+                }
+            }
+
+            Console.WriteLine("\nPresione Enter para volver al menú principal...");
+            Console.ReadLine();
         }
+
+
 
         public static void GestionarEventos()
         {
